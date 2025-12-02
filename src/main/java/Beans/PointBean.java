@@ -22,7 +22,7 @@ public class PointBean implements Serializable {
     private boolean fromGraph = false;
     private Double graphX;
     private Double graphY;
-
+    boolean lastHitResult;
     @Inject DataBaseService service;
 
 
@@ -56,7 +56,6 @@ public class PointBean implements Serializable {
             System.out.println("Using graph coordinates - X: " + graphX + ", Y: " + graphY);
         }
 
-        // Кастомная валидация для R
         if (r == null) {
             System.out.println("R validation failed");
             context.addMessage(null,
@@ -93,6 +92,7 @@ public class PointBean implements Serializable {
 
         Point point = new Point(x, y, r);
         boolean isHit = AreaCheckerBean.isHit(point);
+        this.lastHitResult = isHit;
 
         service.saveResult(x, y, r, isHit);
 
@@ -124,8 +124,16 @@ public class PointBean implements Serializable {
     }
 
     public String checkHitFromGraph() {
-        fromGraph = true; // устанавливаем флаг
+        fromGraph = true;
         return checkHit();
+    }
+
+    public Boolean getLastHitResult() {
+        return lastHitResult;
+    }
+
+    public void setLastHitResult(Boolean lastHitResult) {
+        this.lastHitResult = lastHitResult;
     }
 
     public void setX(Double x) {

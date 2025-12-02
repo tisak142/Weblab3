@@ -2,6 +2,10 @@ package Beans;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,40 +13,43 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
+@Transactional
 @ApplicationScoped
 public class DataBaseService {
-    private List<ResultPoint> results = new CopyOnWriteArrayList<>();
-    private AtomicLong idCounter = new AtomicLong(1);
+    @PersistenceContext(unitName = "web3PU")
+    private EntityManager entityManager;
 
 
     public void saveResult(Double x, Double y, Double r, Boolean hit) {
         ResultPoint resultPoint = new ResultPoint(x, y, r, hit);
-        resultPoint.setId(idCounter.getAndIncrement());
-        results.add(0, resultPoint);
-        System.out.println("=== SAVED TO MEMORY: " + x + ", " + y + ", " + r + " -> " + hit + " ===");
-        System.out.println("=== TOTAL RESULTS: " + results.size() + " ===");
+        entityManager.persist(resultPoint);
+        System.out.println("=== SAVED TO DATABASE: " + x + ", " + y + ", " + r + " -> " + hit + " ===");
     }
 
     public List<ResultPoint> getAllResults() {
-        return new ArrayList<>(results);
+        TypedQuery<ResultPoint> query = entityManager.createQuery(
+                "SELECT r FROM ResultPoint r ORDER BY r.timestamp DESC", ResultPoint.class);
+        return query.getResultList();
     }
 
     public void clearResults() {
-        results.clear();
-        idCounter.set(1);
-        System.out.println("=== CLEARED ALL RESULTS ===");
+        entityManager.createQuery("DELETE FROM ResultPoint").executeUpdate();
+        System.out.println("=== CLEARED ALL RESULTS FROM DATABASE ===");
     }
 
     public int getResultsCount() {
-        return results.size();
+        TypedQuery<Long> query = entityManager.createQuery(
+                "SELECT COUNT(r) FROM ResultPoint r", Long.class);
+        return query.getSingleResult().intValue();
     }
 
     public List<ResultPoint> getResultsByRadius(Double radius) {
         if (radius == null) {
             return getAllResults();
         }
-        return results.stream()
-                .filter(result -> radius.equals(result.getR()))
-                .collect(Collectors.toList());
+        TypedQuery<ResultPoint> query = entityManager.createQuery(
+                "SELECT r FROM ResultPoint r WHERE r.r = :radius ORDER BY r.timestamp DESC", ResultPoint.class);
+        query.setParameter("radius", radius);
+        return query.getResultList();
     }
 }

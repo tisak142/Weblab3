@@ -3,9 +3,11 @@ package Beans;
 import jakarta.persistence.*;
 import java.util.Date;
 
-
+@Entity
+@Table(name = "results")
 public class ResultPoint {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Double x;
@@ -31,7 +33,6 @@ public class ResultPoint {
     }
 
 
-    // Геттеры и сеттеры
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

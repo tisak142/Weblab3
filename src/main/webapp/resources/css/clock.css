@@ -1,0 +1,220 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a2a5a 0%, #063c7a 100%);
+            color: #fff;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .header-text {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            width: 100%;
+            max-width: 650px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-text p {
+            margin: 10px 0;
+            font-size: 20px;
+        }
+
+        .fio {
+            font-size: 26px !important;
+            font-weight: bold;
+            margin-bottom: 20px !important;
+        }
+
+        .clock-container {
+            text-align: center;
+            margin: 40px 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .clock-title {
+            font-size: 28px;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .clock-time {
+            font-size: 24px;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 20px;
+            display: inline-block;
+            min-width: 500px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        #clock {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            margin: 25px 0;
+            align-items: center;
+        }
+
+        .clock-part {
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .clock {
+            font-size: 52px;
+            font-weight: bold;
+            display: block;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #40c6e7, #2a9fd8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .clock-label {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-top: 8px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .date-display {
+            font-size: 24px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+            font-weight: 500;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-link {
+            display: inline-block;
+            background: linear-gradient(to right, #40c6e7, #2a9fd8);
+            color: white;
+            padding: 18px 35px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(64, 198, 231, 0.4);
+        }
+
+        .nav-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(64, 198, 231, 0.6);
+            background: linear-gradient(to right, #2a9fd8, #40c6e7);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .header-text, .clock-time {
+                max-width: 100%;
+                min-width: auto;
+            }
+
+            .clock-time {
+                min-width: 350px;
+                padding: 20px;
+            }
+
+            #clock {
+                gap: 20px;
+            }
+
+            .clock {
+                font-size: 42px;
+            }
+
+            .clock-part {
+                min-width: 90px;
+            }
+
+            .clock-label {
+                font-size: 16px;
+            }
+
+            .date-display {
+                font-size: 20px;
+            }
+
+            .clock-title {
+                font-size: 24px;
+            }
+
+            .header-text p {
+                font-size: 18px;
+            }
+
+            .fio {
+                font-size: 22px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .clock-time {
+                min-width: 300px;
+                padding: 15px;
+            }
+
+            #clock {
+                gap: 15px;
+            }
+
+            .clock {
+                font-size: 36px;
+            }
+
+            .clock-part {
+                min-width: 70px;
+            }
+
+            .clock-label {
+                font-size: 14px;
+            }
+        }

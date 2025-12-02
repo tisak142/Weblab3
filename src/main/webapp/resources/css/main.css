@@ -23,6 +23,17 @@ body {
     transition: all 0.3s ease;
 }
 
+.vars-label {
+    display: block;
+    color: white;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+
 .graph-point:hover {
     r: 6;
     cursor: pointer;
@@ -125,6 +136,10 @@ select option {
   color: white;
 }
 
+.errors {
+color:red;
+}
+
 .buttons {
   padding: 12px 20px;
   border-radius: 10px;
@@ -204,7 +219,6 @@ tr:hover {
   min-height: 20px;
 }
 
-/* Стили для SVG */
 .square {
   fill: rgba(204, 31, 89, 0.7);
 }
@@ -232,4 +246,128 @@ tr:hover {
   .input-section {
     max-width: 100%;
   }
+}
+
+
+
+.points-table {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.points-table th {
+    background: rgba(64, 198, 231, 0.3);
+    font-weight: 600;
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.points-table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.points-table tr:last-child td {
+    border-bottom: none;
+}
+
+.points-table tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.hit {
+    background: rgba(46, 204, 113, 0.1);
+}
+
+.miss {
+    background: rgba(231, 76, 60, 0.1);
+}
+
+.nav-link {
+    display: inline-block;
+    background: linear-gradient(to right, #40c6e7, #2a9fd8);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+.coordinate-button {
+    display: inline-block;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    min-width: 60px;
+    flex: 0 0 calc(25% - 8px);
+}
+
+.coordinate-button:hover {
+    background: rgba(64, 198, 231, 0.3);
+    border-color: #40c6e7;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(64, 198, 231, 0.3);
+}
+
+.coordinate-button:active {
+    transform: translateY(0);
+}
+
+.x-vars {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.selected-value {
+    display: block;
+    margin: 10px 0;
+    padding: 8px 12px;
+    background: rgba(64, 198, 231, 0.2);
+    border-radius: 6px;
+    font-weight: bold;
+    color: #40c6e7;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .coordinate-button {
+        flex: 0 0 calc(50% - 8px);
+        min-width: 50px;
+    }
+}
+
+.form-buttons {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 320px) {
+    .coordinate-button {
+        flex: 0 0 100%;
+    }
 }

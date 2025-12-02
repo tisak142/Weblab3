@@ -7,404 +7,32 @@
     <h:head>
         <title>Main Page</title>
         <meta charset="UTF-8"/>
-        <style>
-            * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: linear-gradient(135deg, #0a2a5a 0%, #063c7a 100%);
-  color: #fff;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  padding: 20px;
-  min-height: 100vh;
-}
-
-.header {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
-}
-
-.graph-point {
-    transition: all 0.3s ease;
-}
-
-.vars-label {
-    display: block;
-    color: white;
-    margin-bottom: 15px;
-    text-align: center;
-    font-size: 22px;
-    margin-bottom: 0;
-    font-weight: 600;
-}
-
-
-.graph-point:hover {
-    r: 6;
-    cursor: pointer;
-    filter: brightness(1.2);
-}
-.result-point {
-    transition: all 0.3s ease;
-}
-
-.result-point:hover {
-    r: 4;
-    stroke-width: 2;
-}
-.header-text {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 15px;
-  padding: 20px;
-  text-align: center;
-  width: 100%;
-  max-width: 600px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-}
-
-.header-text p {
-  margin: 8px 0;
-  font-size: 18px;
-}
-
-.fio {
-  font-size: 22px !important;
-  font-weight: bold;
-  margin-bottom: 15px !important;
-}
-
-.main-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.input-section {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 15px;
-  padding: 25px;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-}
-
-.input-section svg {
-  display: block;
-  margin: 0 auto 25px;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-}
-
-.input-section-text {
-  text-align: center;
-}
-
-.input-section-text form {
-  display: flex;
-  flex-direction: column;
-}
-
-label {
-  display: block;
-  margin-top: 20px;
-  margin-bottom: 8px;
-  text-align: left;
-  font-weight: 500;
-}
-
-select,
-input {
-  width: 100%;
-  padding: 12px 15px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
-
-select:focus,
-input:focus {
-  outline: none;
-  border-color: #40c6e7;
-  box-shadow: 0 0 0 2px rgba(64, 198, 231, 0.3);
-}
-
-select option {
-  background: #0a2a5a;
-  color: white;
-}
-
-.errors {
-color:red;
-}
-
-.buttons {
-  padding: 12px 20px;
-  border-radius: 10px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  margin-top: 25px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: none;
-}
-
-button[type="submit"] {
-  background: linear-gradient(to right, #40c6e7, #2a9fd8);
-  color: white;
-}
-
-button[type="reset"] {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.table-block {
-  flex: 1;
-  min-width: 300px;
-  max-width: 800px;
-  overflow-x: auto;
-}
-
-table {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  border-collapse: collapse;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-}
-
-caption {
-  font-size: 24px;
-  font-weight: bold;
-  padding: 20px;
-  color: white;
-}
-
-th,
-td {
-  padding: 15px;
-  text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-th {
-  background: rgba(64, 198, 231, 0.3);
-  font-weight: 600;
-}
-
-tr:last-child td {
-  border-bottom: none;
-}
-
-tr:hover {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.errors {
-  color: #ff6b6b;
-  font-size: 14px;
-  margin-top: 5px;
-  min-height: 20px;
-}
-
-/* Стили для SVG */
-.square {
-  fill: rgba(204, 31, 89, 0.7);
-}
-
-.circle {
-  fill: rgba(255, 159, 28, 0.7);
-}
-
-.triangle {
-  fill: rgba(46, 204, 113, 0.7);
-}
-
-/* Адаптивность */
-@media (max-width: 768px) {
-  .main-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .table-block {
-    width: 100%;
-  }
-
-  .header-text,
-  .input-section {
-    max-width: 100%;
-  }
-}
-
-
-
-/* Стили для таблицы JSF */
-.points-table {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    border-collapse: collapse;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-}
-
-.points-table th {
-    background: rgba(64, 198, 231, 0.3);
-    font-weight: 600;
-    padding: 15px;
-    text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.points-table td {
-    padding: 15px;
-    text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.points-table tr:last-child td {
-    border-bottom: none;
-}
-
-.points-table tr:hover {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-/* Стили для строк таблицы */
-.hit {
-    background: rgba(46, 204, 113, 0.1);
-}
-
-.miss {
-    background: rgba(231, 76, 60, 0.1);
-}
-
-/* Стили для навигационной ссылки */
-.nav-link {
-    display: inline-block;
-    background: linear-gradient(to right, #40c6e7, #2a9fd8);
-    color: white;
-    padding: 12px 25px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-}
-
-.nav-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-            /* Стили для кнопок координат */
-.coordinate-button {
-    display: inline-block;
-    padding: 10px 15px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 8px;
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    text-align: center;
-    min-width: 60px;
-    flex: 0 0 calc(25% - 8px);
-}
-
-.coordinate-button:hover {
-    background: rgba(64, 198, 231, 0.3);
-    border-color: #40c6e7;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(64, 198, 231, 0.3);
-}
-
-.coordinate-button:active {
-    transform: translateY(0);
-}
-
-/* Контейнер для кнопок координат - ОБНОВЛЕНО */
-.x-vars {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    margin: 20px 0;
-    width: 100%;
-}
-
-/* Стили для отображения выбранного значения */
-.selected-value {
-    display: block;
-    margin: 10px 0;
-    padding: 8px 12px;
-    background: rgba(64, 198, 231, 0.2);
-    border-radius: 6px;
-    font-weight: bold;
-    color: #40c6e7;
-    text-align: center;
-}
-
-/* Адаптивность для кнопок */
-@media (max-width: 480px) {
-    .coordinate-button {
-        flex: 0 0 calc(50% - 8px);
-        min-width: 50px;
-    }
-}
-
-.form-buttons {
-    margin-bottom: 10px;
-}
-
-@media (max-width: 320px) {
-    .coordinate-button {
-        flex: 0 0 100%;
-    }
-}
-
-
-        </style>
-
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/main.css"/>
     </h:head>
     <h:body>
+        <audio id="windowsSound" preload="auto">
+            <source src="#{request.contextPath}/resources/audio/windows.mp3" type="audio/mpeg"/>
+        </audio>
+        <audio id="hitSound" preload="auto">
+            <source src="#{request.contextPath}/resources/audio/break.mp3" type="audio/mpeg"/>
+        </audio>
+        <audio id="noHitSound" preload="auto">
+            <source src="#{request.contextPath}/resources/audio/no-break.mp3" type="audio/mpeg"/>
+        </audio>
+        <audio id="clearValuesSound" preload="auto">
+            <source src="#{request.contextPath}/resources/audio/minus3.mp3" type="audio/mpeg"/>
+        </audio>
+        <h:inputHidden id="lastHitResult" value="#{pointBean.lastHitResult}" />
         <div class="main-container">
             <div class="input-section">
                 <h:panelGroup id="graph-container">
                     <svg width="300px" height="300px" id="graph" onclick="handleGraphClick(event)">
-                        <!-- оси -->
+
                         <line x1="150" y1="10" x2="150" y2="290" stroke="black" stroke-width="2"/>
                         <line x1="10" y1="150" x2="290" y2="150" stroke="black" stroke-width="2"/>
                         <polygon points="145, 15 150, 5 155, 15" fill="black"/>
                         <polygon points="290, 145 300 150 290, 155" fill="black"/>
-                        <!-- разметка -->
+
                         <line x1="50" y1="145" x2="50" y2="155" stroke="black" stroke-width="2"/>
                         <line x1="100" y1="145" x2="100" y2="155" stroke="black" stroke-width="2"/>
                         <line x1="200" y1="145" x2="200" y2="155" stroke="black" stroke-width="2"/>
@@ -413,19 +41,20 @@ tr:hover {
                         <line y1="100" x1="145" y2="100" x2="155" stroke="black" stroke-width="2"/>
                         <line y1="200" x1="145" y2="200" x2="155" stroke="black" stroke-width="2"/>
                         <line y1="250" x1="145" y2="250" x2="155" stroke="black" stroke-width="2"/>
-                        <!-- закрашенные области -->
+
                         <rect class="square" x="50" y="150" width="100" height="50"/>
                         <path class="circle" d="M 150 50 A 100, 100 0, 0,1, 250, 150 L 150 150 Z" fill="orange"/>
                         <polygon class="triangle" points="100, 150 150, 150 150, 100"/>
-                        <!-- подписи разметки -->
-                        <text x="39" y="140">-R</text>
-                        <text x="89" y="140">-R/2</text>
-                        <text x="197" y="140">R/2</text>
-                        <text x="247" y="140">R</text>
-                        <text x="160" y="58">R</text>
-                        <text x="160" y="108">R/2</text>
-                        <text x="158" y="206">-R/2</text>
-                        <text x="158" y="256">-R</text>
+
+                        <text x="39" y="140">-#{pointBean.r != null ? pointBean.r : 'R'}</text>
+                        <text x="89" y="140">-#{pointBean.r != null ? pointBean.r / 2 : 'R/2'}</text>
+                        <text x="197" y="140">#{pointBean.r != null ? pointBean.r / 2 : 'R/2'}</text>
+                        <text x="247" y="140">#{pointBean.r != null ? pointBean.r: "R"}</text>
+                        <text x="160" y="58">#{pointBean.r != null ? pointBean.r : 'R'}</text>
+                        <text x="160" y="108">#{pointBean.r != null ? pointBean.r / 2 : 'R/2'}</text>
+                        <text x="158" y="206">-#{pointBean.r != null ? pointBean.r / 2 : '-R/2'}</text>
+                        <text x="158" y="256">-#{pointBean.r != null ? pointBean.r : 'R'}</text>
+
                         <ui:repeat value="#{pointBean.resultsForCurrentRadius}" var="result">
                             <circle cx="#{150 + (result.x / result.r) * 100}"
                                     cy="#{150 - (result.y / result.r) * 100}"
@@ -510,13 +139,20 @@ tr:hover {
 
                         <h:outputText id="selected-r" value="Выбран R: #{pointBean.r}"/>
 
-                        <h:commandButton value="Check point" action="#{pointBean.checkHit}" styleClass="form-buttons">
-                            <f:ajax execute="point-form" render=":point-form:all-messages :results-container :graph-container :clear-button-container"/>
+                        <h:commandButton id="check-button" value="Check point"
+                                         action="#{pointBean.checkHit}"
+                                         styleClass="form-buttons">
+                            <f:ajax execute="point-form lastHitResult"
+                                    render=":point-form:all-messages :results-container :graph-container :clear-button-container lastHitResult"
+                                    onevent="handleCheckResult"/>
                         </h:commandButton>
-                        <h:commandButton value="Reset values" action="#{pointBean.clear}" styleClass="form-buttons">
+
+                        <h:commandButton id="reset-button" value="Reset values" action="#{pointBean.clear}"
+                                         styleClass="form-buttons" onclick="makeNoiseValues(); return true;">
                             <f:ajax execute="point-form" render=":point-form:all-messages :point-form:selected-x
                             :point-form:selected-r :point-form:y-input
                             :graph-form:current-r :results-container :graph-container"/>
+
                         </h:commandButton>
                         <h:messages id="all-messages" globalOnly="false" styleClass="errors"
                                     showDetail="true" showSummary="false" layout="list"/>
@@ -560,18 +196,13 @@ tr:hover {
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
-
-                <h:panelGroup rendered="#{pointBean.resultsCount == 0}">
-                    <div style="text-align: center; padding: 20px; color: #ccc;">
-                        <h:outputText value="Нет сохраненных результатов"/>
-                    </div>
-                </h:panelGroup>
-
                 <div style="text-align: center; margin-top: 20px;">
                     <h:panelGroup id="clear-button-container">
                         <h:commandButton value="Очистить историю" action="#{pointBean.clearResults}"
-                                         styleClass="buttons" rendered="#{pointBean.getResultsCount() > 0}">
-                            <f:ajax execute="@this" render="clear-button-container :results-container :graph-container :point-form:all-messages"/>
+                                         styleClass="buttons" rendered="#{pointBean.getResultsCount() > 0}"
+                                         onclick="makeNoiseWindows(); return true;">
+                            <f:ajax execute="@this" render="clear-button-container :results-container :graph-container
+                             :point-form:all-messages"/>
                         </h:commandButton>
                     </h:panelGroup>
                 </div>
@@ -582,73 +213,13 @@ tr:hover {
                 <h:inputHidden id="current-r" value="#{pointBean.r}" />
                 <h:commandButton id="graph-submit" value="Submit" action="#{pointBean.checkHitFromGraph}">
                     <f:ajax execute="graph-form" render=":point-form:all-messages :results-container
-                    :graph-container :clear-button-container"/>
+                    :graph-container :clear-button-container lastHitResult" onevent="handleCheckResult"/>
                 </h:commandButton>
             </h:form>
         </div>
         <div class="link-to-clock">
             <h:link outcome="index" value="Перейти к часам" styleClass="nav-link"/>
         </div>
-        <script>
-                function getCurrentR() {
-                    const rInput = document.querySelector('[id*="current-r"]');
-                    if (rInput &amp;&amp; rInput.value) {
-                        return parseFloat(rInput.value);
-                    }
-                    return 2.0;
-                }
-
-                function convertToGraphX(pixelX) {
-                    const centerX = 150;
-                    const scale = 100;
-                    const r = getCurrentR();
-                    return ((pixelX - centerX) / scale * r).toFixed(2);
-                }
-
-                function convertToGraphY(pixelY) {
-                    const centerY = 150;
-                    const scale = 100;
-                    const r = getCurrentR();
-                    return ((centerY - pixelY) / scale * r).toFixed(2);
-                }
-
-                function setFormValues(x, y) {
-                    const xInput = document.querySelector('[id*="graph-x"]');
-                    const yInput = document.querySelector('[id*="graph-y"]');
-
-                    if (xInput &amp;&amp; yInput) {
-                        xInput.value = x;
-                        yInput.value = y;
-                    }
-                }
-
-                function submitForm() {
-                    const submitButton = document.querySelector('[id*="graph-submit"]');
-                    if (submitButton) {
-                        submitButton.click();
-                    }
-                }
-
-                function handleGraphClick(event) {
-                    const r = getCurrentR();
-                    if (!r || r &lt;= 0) {
-                        alert("Сначала установите радиус R!");
-                        return;
-                    }
-
-                    const svg = document.getElementById('graph');
-                    const rect = svg.getBoundingClientRect();
-                    const x = event.clientX - rect.left;
-                    const y = event.clientY - rect.top;
-
-                    const graphX = convertToGraphX(x);
-                    const graphY = convertToGraphY(y);
-
-                    console.log("Graph click - X:", graphX, "Y:", graphY, "R:", r);
-
-                    setFormValues(graphX, graphY);
-                    submitForm();
-                }
-        </script>
+        <h:outputScript library="js" name="main.js"/>
     </h:body>
 </html>
