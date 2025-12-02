@@ -4,7 +4,7 @@ function getCurrentR() {
         const value = parseFloat(rInput.value);
         return !isNaN(value) ? value : null;
     }
-    return null; // null если R не установлен
+    return null;
 }
                 function convertToGraphX(pixelX) {
                     const centerX = 150;
@@ -88,29 +88,23 @@ function makeNoiseValues() {
 }
 
 function handleCheckResult(data) {
-    // data.status может быть: 'begin', 'complete', 'success'
     if (data.status === 'complete') {
-        // Ждем 400ms чтобы DOM обновился
         setTimeout(() => {
-            // 1. СНАЧАЛА ПРОВЕРЯЕМ УСТАНОВЛЕН ЛИ R
             const currentR = getCurrentR();
             if (!currentR || currentR <= 0) {
                 console.log("R не установлен, звук не играем");
-                return; // Выходим если R не установлен
+                return;
             }
 
-            // 2. Потом проверяем hidden поле
             const resultField = document.querySelector('[id*="lastHitResult"]');
 
             if (resultField && resultField.value !== '') {
-                // Берем значение из поля
                 const result = resultField.value === 'true';
 
-                // Играем соответствующий звук
                 if (result) {
-                    makeNoiseHit();     // звук попадания
+                    makeNoiseHit();
                 } else {
-                    makeNoiseNoHit();   // звук промаха
+                    makeNoiseNoHit();
                 }
             } else {
                 console.log("Поле lastHitResult пустое (была ошибка валидации)");
@@ -120,7 +114,7 @@ function handleCheckResult(data) {
 }
 
 function handleResetButton() {
-    makeNoiseValues();  // первая функция
-    resetCounters();    // вторая функция (если нужна)
-    return true;        // обязательно return true
+    makeNoiseValues();
+    resetCounters();
+    return true;
 }
